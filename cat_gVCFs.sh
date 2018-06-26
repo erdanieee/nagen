@@ -2,7 +2,7 @@
 #$ -V
 #$ -m ea
 #$ -M alberto.labarga.gutierrez@navarra.es
-#$ -wd /datos/nagen
+#$ -wd /datos/nagen/nagen_samples
 #$ -o /home/alabarga/jobs/opencga.stdout
 #$ -e /home/alabarga/jobs/opencga.stderr
 #$ -w e
@@ -13,9 +13,10 @@
 ## Example: sbatch cat_gVCFs.sh AC5421 E0020 /mnt/lustre/scratch/CBRA/projects/NAGEN/NAGEN_01/gVCF/ /mnt/lustre/scratch/CBRA/projects/NAGEN/analysis/ /mnt/lustre/scratch/CBRA/data/indexed_genomes/bwa/hs37d5/hs37d5.fa 
 
 sampleId=$1
-inputDir=$2
-outputDir=$3
+inputDir=gvcf
+outputDir=gvcf
 referenceGenome=/datos/nagen/reference_genome/hs37d5.fa
+
 
 # Cat gVCFs
 /opt/gatk-4.0.0.0/gatk MergeVcfs \
@@ -44,5 +45,4 @@ referenceGenome=/datos/nagen/reference_genome/hs37d5.fa
 -I $inputDir/$sampleId'.22.g.vcf.gz' \
 -I $inputDir/$sampleId'.X.g.vcf.gz' \
 -I $inputDir/$sampleId'.Y.g.vcf.gz' \
--I $inputDir/$sampleId'.MT.g.vcf.gz' \
 -O $outputDir/$sampleId'.g.vcf.gz'
